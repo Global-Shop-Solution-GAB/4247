@@ -1,0 +1,237 @@
+Program.Sub.ScreenSU.Start
+Gui.F_Rim_Maint..Create
+Gui.F_Rim_Maint..Size(5085,4770)
+Gui.F_Rim_Maint..MinX(0)
+Gui.F_Rim_Maint..MinY(0)
+Gui.F_Rim_Maint..Position(0,0)
+Gui.F_Rim_Maint..BackColor(-2147483633)
+Gui.F_Rim_Maint..MousePointer(0)
+Gui.F_Rim_Maint..Event(UnLoad,Unload)
+Gui.F_Rim_Maint..Caption("Rim Maintenance")
+Gui.F_Rim_Maint.gsgcRim.Create(GsGridControl)
+Gui.F_Rim_Maint.gsgcRim.Size(4575,3120)
+Gui.F_Rim_Maint.gsgcRim.Position(105,120)
+Gui.F_Rim_Maint.gsgcRim.Event(CellValueChanged,gsgcRim_CellValueChanged)
+Gui.F_Rim_Maint.cmdSave.Create(Button)
+Gui.F_Rim_Maint.cmdSave.Size(855,375)
+Gui.F_Rim_Maint.cmdSave.Position(105,3750)
+Gui.F_Rim_Maint.cmdSave.Caption("Save")
+Gui.F_Rim_Maint.cmdSave.Event(Click,cmdSave_Click)
+Gui.F_Rim_Maint.cmdAddRow.Create(Button)
+Gui.F_Rim_Maint.cmdAddRow.Size(855,375)
+Gui.F_Rim_Maint.cmdAddRow.Position(105,3315)
+Gui.F_Rim_Maint.cmdAddRow.Caption("Add Row")
+Gui.F_Rim_Maint.cmdAddRow.Event(Click,cmdAddRow_Click)
+Gui.F_Rim_Maint.cmdDeleteRow.Create(Button)
+Gui.F_Rim_Maint.cmdDeleteRow.Size(855,375)
+Gui.F_Rim_Maint.cmdDeleteRow.Position(1035,3315)
+Gui.F_Rim_Maint.cmdDeleteRow.Caption("Delete")
+Gui.F_Rim_Maint.cmdDeleteRow.Event(Click,cmdDeleteRow_Click)
+Program.Sub.ScreenSU.End
+
+Program.Sub.Preflight.Start
+Program.Sub.Preflight.End
+
+Program.Sub.Main.Start
+F.Intrinsic.Control.SetErrorHandler("Main_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+
+'Open database connection
+F.ODBC.Connection!con.OpenConnection(V.Ambient.PDSN,V.Ambient.PUser,V.Ambient.PPass)
+'Load Data
+F.Intrinsic.Control.CallSub(load_data)
+'Format DataTable
+F.Intrinsic.Control.CallSub(format_grid)
+'Show Screen
+gui.F_Rim_Maint..Show
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Main_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_4247_Rim_Maint.g2u",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+Program.Sub.Main.End
+
+Program.Sub.Unload.Start
+F.Intrinsic.Control.SetErrorHandler("Unload_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+
+F.ODBC.Connection!con.Close
+F.Intrinsic.Control.End
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Unload_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_4247_Rim_Maint.g2u",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.End
+
+Function.Intrinsic.Control.EndIf
+Program.Sub.Unload.End
+
+Program.Sub.cmdAddRow_Click.Start
+F.Intrinsic.Control.SetErrorHandler("cmdAddRow_Click_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+
+F.Data.DataTable.AddRow("Rim_Table","TIRE_SIZE","","RIM_SIZE","")
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("cmdAddRow_Click_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_4247_Rim_Maint.g2u",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.CallSub(unload)
+Function.Intrinsic.Control.EndIf
+Program.Sub.cmdAddRow_Click.End
+
+Program.Sub.cmdSave_Click.Start
+F.Intrinsic.Control.SetErrorHandler("cmdSave_Click_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.iCount.Declare(Long)
+
+'Build temp view so we can delete all of the blank rows
+F.Data.DataView.Create("Rim_Table","Rim_Temp",22,"TIRE_SIZE = ''","")
+
+'Loop through all the blank records and delete them
+F.Intrinsic.Control.For(V.Local.iCount,V.DataView.Rim_Table!Rim_Temp.RowCount--,0,-1)
+	F.Data.DataTable.DeleteRow("Rim_Table",V.DataView.Rim_Table!Rim_Temp(V.Local.iCount).DataTableIndex)
+F.Intrinsic.Control.Next(V.Local.iCount)
+
+F.Data.DataTable.SaveToDB("Rim_Table","con","GCG_4247_RIM_MAINT","TIRE_SIZE",7)
+
+'Delete the view since we don't need it anymore
+F.Data.DataView.Close("Rim_Table","Rim_Temp")
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("cmdSave_Click_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_4247_Rim_Maint.g2u",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.CallSub(unload)
+Function.Intrinsic.Control.EndIf
+Program.Sub.cmdSave_Click.End
+
+Program.Sub.Load_Data.Start
+F.Intrinsic.Control.SetErrorHandler("Load_Data_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+
+'First we need to create the datatable
+F.Data.DataTable.CreateFromSQL("Rim_Table","con","SELECT * FROM GCG_4247_RIM_MAINT",True)
+'Now create View from this
+F.Data.DataView.Create("Rim_Table","Rim_View")
+Gui.F_Rim_Maint.gsgcRim.AddGridviewFromDataview("Rim_Grid","Rim_Table","Rim_View")
+Gui.F_Rim_Maint.gsgcRim.MainView("Rim_Grid")
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Load_Data_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_4247_Rim_Maint.g2u",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.CallSub(unload)
+Function.Intrinsic.Control.EndIf
+Program.Sub.Load_Data.End
+
+Program.Sub.Format_Grid.Start
+F.Intrinsic.Control.SetErrorHandler("Format_Grid_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+
+'Set Column Titles
+Gui.F_Rim_Maint.gsgcRim.SetColumnProperty("Rim_Grid","TIRE_SIZE","Caption","Tire Size")
+Gui.F_Rim_Maint.gsgcRim.SetColumnProperty("Rim_Grid","RIM_SIZE","Caption","Rim Size")
+
+'Make columns editable
+Gui.F_Rim_Maint.gsgcRim.SetColumnProperty("Rim_Grid","TIRE_SIZE","ReadOnly","False")
+Gui.F_Rim_Maint.gsgcRim.SetColumnProperty("Rim_Grid","RIM_SIZE","ReadOnly","False")
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Format_Grid_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_4247_Rim_Maint.g2u",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.CallSub(unload)
+Function.Intrinsic.Control.EndIf
+Program.Sub.Format_Grid.End
+
+Program.Sub.cmdDeleteRow_Click.Start
+F.Intrinsic.Control.SetErrorHandler("cmdDeleteRow_Click_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.iRow.Declare(Long)
+
+'Get selected row
+Gui.F_Rim_Maint.gsgcRim.GetSelectedRowsInFocus(V.Local.iRow)
+
+'If a row was selected, delete it from the table.
+F.Intrinsic.Control.If(V.Local.iRow,<>,-1)
+	F.Data.DataTable.DeleteRow("Rim_Table",V.Local.iRow)
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("cmdDeleteRow_Click_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_4247_Rim_Maint.g2u",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.CallSub(unload)
+Function.Intrinsic.Control.EndIf
+Program.Sub.cmdDeleteRow_Click.End
+
+Program.Sub.gsgcRim_CellValueChanged.Start
+F.Intrinsic.Control.SetErrorHandler("gsgcRim_CellValueChanged_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.iRepeat.Declare(Long)
+V.Local.iCount.Declare(Long)
+
+'Only check if they are modifying the tire size
+F.Intrinsic.Control.If(V.Args.Column,=,"TIRE_SIZE")
+	F.Intrinsic.Control.For(V.Local.iCount,0,V.DataTable.Rim_Table.RowCount--,1)
+		'Check to see if the Tire Sizes match
+		F.Intrinsic.Control.If(V.DataTable.Rim_Table(V.Local.iCount).TIRE_SIZE!FieldVal,=,V.Args.Value)
+			'Update repeat by 1, if repeat is greater than 1 then we know it's already in the table
+			F.Intrinsic.Math.Add(V.Local.iRepeat,1,V.Local.iRepeat)
+		F.Intrinsic.Control.EndIf
+	F.Intrinsic.Control.Next(V.Local.iCount)
+	
+	'Check repeat value
+	F.Intrinsic.Control.If(V.Local.iRepeat,>,1)
+		F.Intrinsic.UI.Msgbox("The Tire Size is already in the table.")
+		F.Data.DataTable.SetValue("Rim_Table",V.Args.RowIndex,"TIRE_SIZE","")
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("gsgcRim_CellValueChanged_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_4247_Rim_Maint.g2u",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.CallSub(unload)
+Function.Intrinsic.Control.EndIf
+Program.Sub.gsgcRim_CellValueChanged.End
+
+Program.Sub.Comments.Start
+${$0$}$Tire Placard and MSO Certificate of Origin$}$BCC$}$11/4/2016 2:14:24 PM$}$False
+${$3$}$0$}$$}$0$}$-1$}$$}$12:00:00 AM$}$This program willl allow the user to maintain their Rims by entering in their Tire Size and the corresponding rim size. This will be stored within a table.
+Program.Sub.Comments.End

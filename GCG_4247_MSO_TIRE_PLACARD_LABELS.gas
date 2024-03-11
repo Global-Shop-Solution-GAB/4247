@@ -1,0 +1,708 @@
+program.sub.screenSU.start
+gui.F_Labels..create
+gui.F_Labels..caption("Print Placard/MSO")
+gui.F_Labels..size(3960,4275)
+gui.F_Labels..minx(0)
+gui.F_Labels..miny(0)
+gui.F_Labels..position(0,0)
+gui.F_Labels..event(unload,F_Labels_UnLoad)
+gui.F_Labels..alwaysontop(False)
+gui.F_Labels..fontname("Arial")
+gui.F_Labels..fontsize(8)
+gui.F_Labels..forecolor(0)
+gui.F_Labels..fontstyle(,,,,)
+gui.F_Labels..BackColor(-2147483633)
+gui.F_Labels..controlbox(True)
+gui.F_Labels..maxbutton(False)
+gui.F_Labels..minbutton(True)
+gui.F_Labels..mousepointer(0)
+gui.F_Labels..moveable(True)
+gui.F_Labels..sizeable(False)
+gui.F_Labels..ShowInTaskBar(True)
+gui.F_Labels..titlebar(True)
+
+gui.F_Labels.frmMSO.create(frame)
+gui.F_Labels.frmMSO.caption("MSO Certificate")
+gui.F_Labels.frmMSO.size(1725,1050)
+gui.F_Labels.frmMSO.position(210,840)
+gui.F_Labels.frmMSO.visible(True)
+gui.F_Labels.frmMSO.borderstyle(1)
+gui.F_Labels.frmMSO.fontname("Arial")
+gui.F_Labels.frmMSO.fontsize(8)
+gui.F_Labels.frmTire.create(frame)
+gui.F_Labels.frmTire.caption("Tire Placard")
+gui.F_Labels.frmTire.size(3360,1020)
+gui.F_Labels.frmTire.position(210,2055)
+gui.F_Labels.frmTire.visible(True)
+gui.F_Labels.frmTire.borderstyle(1)
+gui.F_Labels.frmTire.fontname("Arial")
+gui.F_Labels.frmTire.fontsize(8)
+gui.F_Labels.txtShipWgt.create(textbox,"",True,1215,300,0,150,555,True,1,Arial,8,-2147483643,1 )
+gui.F_Labels.txtShipWgt.parent("frmmso")
+gui.F_Labels.txtShipWgt.event(lostfocus,txtShipWgt_LostFocus)
+gui.F_Labels.txtShipWgt.defaultvalue("")
+gui.F_Labels.txtShipWgt.controlgroup(0)
+gui.F_Labels.lbl5.create(label,"Shipping Weight",True,1365,255,1,135,345,True,0,Arial,8,-2147483633,0 )
+gui.F_Labels.lbl5.parent("frmmso")
+gui.F_Labels.lbl5.defaultvalue("")
+gui.F_Labels.lbl5.controlgroup(0)
+gui.F_Labels.txtkPA.create(textbox,"",True,645,300,0,1020,495,True,1,Arial,8,-2147483643,1 )
+gui.F_Labels.txtkPA.parent("frmtire")
+gui.F_Labels.txtkPA.event(lostfocus,txtkPA_LostFocus)
+gui.F_Labels.txtkPA.defaultvalue("")
+gui.F_Labels.txtkPA.controlgroup(0)
+gui.F_Labels.lbl3.create(label,"kPA",True,585,255,1,1005,300,True,0,Arial,8,-2147483633,0 )
+gui.F_Labels.lbl3.parent("frmtire")
+gui.F_Labels.lbl3.defaultvalue("")
+gui.F_Labels.lbl3.controlgroup(0)
+gui.F_Labels.txtPSI.create(textbox,"",True,645,300,0,195,495,True,1,Arial,8,-2147483643,1 )
+gui.F_Labels.txtPSI.parent("frmtire")
+gui.F_Labels.txtPSI.event(lostfocus,txtPSI_LostFocus)
+gui.F_Labels.txtPSI.defaultvalue("")
+gui.F_Labels.txtPSI.controlgroup(0)
+gui.F_Labels.lbl4.create(label,"PSI",True,375,255,1,165,300,True,0,Arial,8,-2147483633,0 )
+gui.F_Labels.lbl4.parent("frmtire")
+gui.F_Labels.lbl4.defaultvalue("")
+gui.F_Labels.lbl4.controlgroup(0)
+gui.F_Labels.chkSpare.create(checkbox)
+gui.F_Labels.chkSpare.caption("Spare Included")
+gui.F_Labels.chkSpare.visible(True)
+gui.F_Labels.chkSpare.size(1485,360)
+gui.F_Labels.chkSpare.zorder(0)
+gui.F_Labels.chkSpare.position(1830,465)
+gui.F_Labels.chkSpare.enabled(True)
+gui.F_Labels.chkSpare.alignment(0)
+gui.F_Labels.chkSpare.parent("frmtire")
+gui.F_Labels.chkSpare.fontname("Arial")
+gui.F_Labels.chkSpare.fontsize(8)
+gui.F_Labels.chkSpare.defaultvalue("")
+gui.F_Labels.chkSpare.controlgroup(0)
+gui.F_Labels.txtJob.create(textbox,"",True,1215,300,0,210,375,True,0,Arial,8,-2147483643,1 )
+gui.F_Labels.txtJob.defaultvalue("")
+gui.F_Labels.txtJob.controlgroup(0)
+gui.F_Labels.txtSuffix.create(textbox,"",True,570,300,0,1530,375,True,0,Arial,8,-2147483643,1 )
+gui.F_Labels.txtSuffix.defaultvalue("")
+gui.F_Labels.txtSuffix.controlgroup(0)
+gui.F_Labels.lbl1.create(label,"Job",True,480,255,1,225,180,True,0,Arial,8,-2147483633,0 )
+gui.F_Labels.lbl1.defaultvalue("")
+gui.F_Labels.lbl1.controlgroup(0)
+gui.F_Labels.lbl2.create(label,"Suffix",True,555,255,1,1545,165,True,0,Arial,8,-2147483633,0 )
+gui.F_Labels.lbl2.defaultvalue("")
+gui.F_Labels.lbl2.controlgroup(0)
+gui.F_Labels.cmdJobBrowser.create(button)
+gui.F_Labels.cmdJobBrowser.caption("^")
+gui.F_Labels.cmdJobBrowser.visible(True)
+gui.F_Labels.cmdJobBrowser.size(465,375)
+gui.F_Labels.cmdJobBrowser.zorder(0)
+gui.F_Labels.cmdJobBrowser.position(2235,345)
+gui.F_Labels.cmdJobBrowser.enabled(True)
+gui.F_Labels.cmdJobBrowser.fontname("Arial")
+gui.F_Labels.cmdJobBrowser.fontsize(8)
+gui.F_Labels.cmdJobBrowser.event(click,cmdJobBrowser_Click)
+gui.F_Labels.cmdJobBrowser.defaultvalue("")
+gui.F_Labels.cmdJobBrowser.controlgroup(0)
+gui.F_Labels.cmdPrint.create(button)
+gui.F_Labels.cmdPrint.caption("Print")
+gui.F_Labels.cmdPrint.visible(True)
+gui.F_Labels.cmdPrint.size(855,375)
+gui.F_Labels.cmdPrint.zorder(0)
+gui.F_Labels.cmdPrint.position(210,3225)
+gui.F_Labels.cmdPrint.enabled(True)
+gui.F_Labels.cmdPrint.fontname("Arial")
+gui.F_Labels.cmdPrint.fontsize(8)
+gui.F_Labels.cmdPrint.event(click,cmdPrint_Click)
+gui.F_Labels.cmdPrint.defaultvalue("")
+gui.F_Labels.cmdPrint.controlgroup(0)
+gui.F_Labels.txtJob.tabstop(True)
+gui.F_Labels.txtJob.tabindex(1)
+gui.F_Labels.txtSuffix.tabstop(True)
+gui.F_Labels.txtSuffix.tabindex(2)
+gui.F_Labels.cmdJobBrowser.tabstop(True)
+gui.F_Labels.cmdJobBrowser.tabindex(3)
+gui.F_Labels.txtShipWgt.tabstop(True)
+gui.F_Labels.txtShipWgt.tabindex(4)
+gui.F_Labels.txtPSI.tabstop(True)
+gui.F_Labels.txtPSI.tabindex(5)
+gui.F_Labels.txtkPA.tabstop(True)
+gui.F_Labels.txtkPA.tabindex(6)
+gui.F_Labels.chkSpare.tabstop(True)
+gui.F_Labels.chkSpare.tabindex(7)
+gui.F_Labels.cmdPrint.tabstop(True)
+gui.F_Labels.cmdPrint.tabindex(8)
+program.sub.screenSU.End
+
+Program.Sub.Preflight.Start
+Variable.Global.sJob.Declare(String)
+Variable.Global.sSuffix.Declare(String)
+Variable.Global.sBody_Type.Declare(String,"TRAILER")
+Variable.Global.sGVWRLBS.Declare(String)
+Variable.Global.sGVWRKGS.Declare(String)
+Variable.Global.sYear.Declare(String)
+Variable.Global.sInvoice_No.Declare(String)
+Variable.Global.sMake.Declare(String,"H & H TRAILER")
+Variable.Global.fShipping_Weight.Declare(Float,0)
+Variable.Global.sSeries_Model.Declare(String)
+Variable.Global.sCustomer.Declare(String)
+Variable.Global.sCustomer_Addr.Declare(String)
+Variable.Global.sCustomer_City.Declare(String)
+Variable.Global.sCustomer_State.Declare(String)
+Variable.Global.sCustomer_Zip.Declare(String)
+Variable.Global.sCustomer_Country.Declare(String)
+Variable.Global.sTire_Size.Declare(String)
+Variable.Global.fTire_Pressure.Declare(Float,0)
+Variable.Global.sVIN.Declare(String)
+Variable.Global.fCargo_WeightLBS.Declare(Float)
+Variable.Global.fCargo_WeightKGS.Declare(Float)
+Variable.Global.sCustomer_Addr2.Declare(String)
+Variable.Global.iBIRUNID.Declare(Long,0)
+Variable.Global.iLogID.Declare(Long,0)
+Variable.UDT.uMSO.Define("Date",String,Date)
+Variable.UDT.uMSO.Define("VIN",String,VIN)
+Variable.UDT.uMSO.Define("Body",String,Body)
+Variable.UDT.uMSO.Define("GVWRKGS",String,GVWRKGS)
+Variable.UDT.uMSO.Define("GVWRLBS",String,GVWRLBS)
+Variable.UDT.uMSO.Define("Year",String,Year)
+Variable.UDT.uMSO.Define("Invoice_No",String,Invoice_No)
+Variable.UDT.uMSO.Define("Make",String,Make)
+Variable.UDT.uMSO.Define("Series_Model",String,Series_Model)
+Variable.UDT.uMSO.Define("Customer",String,Customer)
+Variable.UDT.uMSO.Define("Address",String,Address)
+Variable.UDT.uMSO.Define("Address2",String,Address2)
+Variable.UDT.uMSO.Define("City",String,City)
+Variable.UDT.uMSO.Define("State",String,State)
+Variable.UDT.uMSO.Define("Zip",String,Zip)
+Variable.UDT.uMSO.Define("Country",String,Country)
+Variable.UDT.uMSO.Define("BIRUNID",Long,BIRUNID)
+Variable.UDT.uMSO.Define("Shipping_Weight",Float,Shipping_Weight)
+Variable.UDT.uMSO.Define("Job",String,Job)
+Variable.uGlobal.uMSO.Declare("uMSO")
+Variable.UDT.uPLACARD.Define("Tire_Size",String,Tire_Size)
+Variable.UDT.uPLACARD.Define("Cold_PressureKPA",Long,Cold_PressureKPA)
+Variable.UDT.uPLACARD.Define("Cold_PressurePSI",Long,Cold_PressurePSI)
+Variable.UDT.uPLACARD.Define("GVWRLBS",String,GVWRLBS)
+Variable.UDT.uPLACARD.Define("GVWRKGS",String,GVWRKGS)
+Variable.UDT.uPLACARD.Define("GAWRLBS",String,GAWRLBS)
+Variable.UDT.uPLACARD.Define("GAWRKGS",String,GAWRKGS)
+Variable.UDT.uPLACARD.Define("DATE",String,"Date")
+Variable.UDT.uPLACARD.Define("Invoice_No",String,Invoice_No)
+Variable.UDT.uPLACARD.Define("Job",String,Job)
+Variable.UDT.uPLACARD.Define("Year",String,Year)
+Variable.UDT.uPLACARD.Define("Rim",String,Rim)
+Variable.UDT.uPLACARD.Define("Axle",String,Axle)
+Variable.UDT.uPLACARD.Define("VIN",String,VIN)
+Variable.UDT.uPLACARD.Define("Cargo_WeightKGS",Long,Cargo_WeightKGS)
+Variable.UDT.uPLACARD.Define("Cargo_WeightLBS",Long,Cargo_WeightLBS)
+Variable.UDT.uPLACARD.Define("Spare",Boolean,Spare)
+Variable.uGlobal.uPLACARD.Declare("uPLACARD")
+Variable.Global.sPressureKPA.Declare(String)
+Variable.Global.sPressurePSI.Declare(String)
+Variable.Global.iAxles.Declare(Long,0)
+Variable.Global.bSpare.Declare(Boolean,False)
+Variable.Global.sGAWRKGS.Declare(String)
+Variable.Global.sGAWRLBS.Declare(String)
+Variable.Global.sRim.Declare(String)
+Variable.Global.sDate.Declare(String)
+Program.Sub.Preflight.End
+
+Program.Sub.Main.Start
+F.Intrinsic.Control.SetErrorHandler("Main_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+
+'Open connection and show screen
+F.ODBC.Connection!con.OpenConnection(V.Ambient.PDSN,V.Ambient.PUser,V.Ambient.PPass)
+Gui.F_Labels..Show
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Main_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_4247_MSO_TIRE_PLACARD_LABELS.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+Function.Intrinsic.Control.EndIf
+
+Program.Sub.Main.End
+
+Program.Sub.cmdJobBrowser_Click.Start
+F.Intrinsic.Control.SetErrorHandler("cmdJobBrowser_Click_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.sRet.Declare(String)
+
+'Launch Job Browser
+F.Intrinsic.UI.Browser(1000,"",V.Local.sRet)
+
+'Make sure a value is selected if not then do nothing
+F.Intrinsic.Control.If(V.Local.sRet,<>,"***CANCEL***")
+	F.Intrinsic.String.Split(V.Local.sRet,"*!*",V.Local.sRet)
+	Gui.F_Labels.txtJob.Text(V.Local.sRet(0))
+	Gui.F_Labels.txtSuffix.Text(V.Local.sRet(1))
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("cmdJobBrowser_Click_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_4247_MSO_TIRE_PLACARD_LABELS.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.CallSub(f_labels_unload)
+Function.Intrinsic.Control.EndIf
+Program.Sub.cmdJobBrowser_Click.End
+
+Program.Sub.txtkPA_LostFocus.Start
+F.Intrinsic.Control.SetErrorHandler("txtkPA_LostFocus_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.bRet.Declare(Boolean)
+
+'Check if the value entered is numeric
+F.Intrinsic.Math.IsNumeric(V.Screen.F_Labels!txtkPA.Text,V.Local.bRet)
+
+F.Intrinsic.Control.If(V.Local.bRet,=,False,"AND",V.Screen.F_Labels!txtkPA.Text,<>,"")
+	F.Intrinsic.UI.Msgbox("Value must be numeric.")
+	Gui.F_Labels.txtkPA.Text("")
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("txtkPA_LostFocus_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_4247_MSO_TIRE_PLACARD_LABELS.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.CallSub(F_labels_unload)
+Function.Intrinsic.Control.EndIf
+Program.Sub.txtkPA_LostFocus.End
+
+Program.Sub.txtShipWgt_LostFocus.Start
+F.Intrinsic.Control.SetErrorHandler("txtShipWgt_LostFocus_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.bRet.Declare(Boolean)
+
+'Check to make sure that the value entered is numeric
+F.Intrinsic.Math.IsNumeric(V.Screen.F_Labels!txtShipWgt.Text,V.Local.bRet)
+
+F.Intrinsic.Control.If(V.Local.bRet,=,False,"AND",V.Screen.F_Labels!txtShipWgt.Text,<>,"")
+	F.Intrinsic.UI.Msgbox("Value must be numeric.")
+	Gui.F_Labels.txtShipWgt.Text("")
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("txtShipWgt_LostFocus_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_4247_MSO_TIRE_PLACARD_LABELS.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.CallSub(F_labels_unload)
+Function.Intrinsic.Control.EndIf
+
+Program.Sub.txtShipWgt_LostFocus.End
+
+Program.Sub.txtPSI_LostFocus.Start
+F.Intrinsic.Control.SetErrorHandler("txtPSI_LostFocus_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.bRet.Declare(Boolean)
+V.Local.fKPA.Declare(Float)
+
+'Check to make sure that the value entered is numeric
+F.Intrinsic.Math.IsNumeric(V.Screen.F_Labels!txtPSI.Text,V.Local.bRet)
+
+F.Intrinsic.Control.If(V.Local.bRet,=,False,"AND",V.Screen.F_Labels!txtPSI.Text,<>,"")
+	F.Intrinsic.UI.Msgbox("Value must be numeric.")
+	'If it is not numeric clear out the text box
+	Gui.F_Labels.txtPSI.Text("")
+F.Intrinsic.Control.ElseIf(V.Local.bRet,=,True,"AND",V.Screen.F_Labels!txtPSI.Text,<>,"")
+	'If it is numeric, calculate the PSI value. This will only occur here so that they can update PSI if the value is different
+	F.Intrinsic.Math.Mult(V.Screen.F_Labels!txtPSI.Text,6.89476,V.Local.fKPA)
+	F.Intrinsic.Math.Round(V.Local.fKPA,0,V.Local.fKPA)
+	Gui.F_Labels.txtkPA.Text(V.Local.fKPA)
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("txtPSI_LostFocus_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_4247_MSO_TIRE_PLACARD_LABELS.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.CallSub(F_labels_unload)
+Function.Intrinsic.Control.EndIf
+Program.Sub.txtPSI_LostFocus.End
+
+Program.Sub.cmdPrint_Click.Start
+F.Intrinsic.Control.SetErrorHandler("cmdPrint_Click_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+
+'Check that there aren't any blank fields
+F.Intrinsic.Control.If(V.Screen.F_Labels!txtJob.Text.Trim,=,"")
+	F.Intrinsic.UI.Msgbox("You must select a Job.")
+	F.Intrinsic.Control.ExitSub
+F.Intrinsic.Control.ElseIf(V.Screen.F_Labels!txtShipWgt.Text.Trim,=,"")
+	F.Intrinsic.UI.Msgbox("You must enter a Shipping Weight Value.")
+	F.Intrinsic.Control.ExitSub
+F.Intrinsic.Control.ElseIf(V.Screen.F_Labels!txtkPA.Text.Trim,=,"")
+	F.Intrinsic.UI.Msgbox("You must enter a tire pressure (kPA).")
+	F.Intrinsic.Control.ExitSub
+F.Intrinsic.Control.ElseIf(V.Screen.F_Labels!txtPSI.Text.Trim,=,"")
+	F.Intrinsic.UI.Msgbox("You must enter a tire pressure (PSI).")
+	F.Intrinsic.Control.ExitSub
+F.Intrinsic.Control.EndIf
+
+'Notify user MSO is printing
+F.Intrinsic.UI.InvokeWaitDialog("Printing MSO Certificate of Origin")
+'Print the MSO Certificate of Origin
+F.Intrinsic.Control.CallSub(Print_MSO)
+'Notify user Tire Placard is printing
+F.Intrinsic.UI.ChangeWaitStatus("Printing Tire Placard")
+'Print the Tire Placard
+F.Intrinsic.Control.CallSub(Print_Placard)
+'Close wait dialog
+F.Intrinsic.UI.CloseWaitDialog
+'Close Program
+F.Intrinsic.Control.CallSub(f_labels_unload)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("cmdPrint_Click_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_4247_MSO_TIRE_PLACARD_LABELS.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.CallSub(f_labels_unload)
+Function.Intrinsic.Control.EndIf
+Program.Sub.cmdPrint_Click.End
+
+Program.Sub.Print_MSO.Start
+F.Intrinsic.Control.SetErrorHandler("Print_MSO_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.iReportID.Declare(Long)
+V.Local.iRet.Declare(Long)
+
+'Start logging
+F.Global.BI.GetRunID(V.Global.iBIRUNID)
+'Get Report ID
+F.Global.BI.GetIDFromName("GCG_4247_MSO_Certificate.rpt",V.Local.iReportID)
+F.Global.BI.StartLogging(V.Global.iBIRUNID,V.Local.iReportID,0,"",V.Global.iLogID)
+
+'First we need to collect the data needed for the MSO
+F.Intrinsic.Control.CallSub(Get_mso_data)
+'Load data into UDT
+V.uGlobal.uMSO.Redim(-1,-1)
+V.uGlobal.uMSO.Redim(0,0)
+V.uGlobal.uMSO!Date.Set(V.Global.sDate)
+V.uGlobal.uMSO!Body.Set(V.Global.sBody_Type)
+V.uGlobal.uMSO!VIN.Set(V.Global.sVIN)
+V.uGlobal.uMSO!Shipping_Weight.Set(V.Global.fShipping_Weight)
+V.uGlobal.uMSO!GVWRLBS.Set(V.Global.sGVWRLBS)
+V.uGlobal.uMSO!GVWRKGS.Set(V.Global.sGVWRKGS)
+V.uGlobal.uMSO!Year.Set(V.Global.sYear)
+V.uGlobal.uMSO!Invoice_No.Set(V.Global.sInvoice_No)
+V.uGlobal.uMSO!Make.Set(V.Global.sMake)
+V.uGlobal.uMSO!Shipping_Weight.Set(V.Global.fShipping_Weight)
+V.uGlobal.uMSO!Series_Model.Set(V.Global.sSeries_Model)
+V.uGlobal.uMSO!Customer.Set(V.Global.sCustomer)
+V.uGlobal.uMSO!Address.Set(V.Global.sCustomer_Addr)
+V.uGlobal.uMSO!Address2.Set(V.Global.sCustomer_Addr2)
+V.uGlobal.uMSO!City.Set(V.Global.sCustomer_City)
+V.uGlobal.uMSO!Country.Set(V.Global.sCustomer_Country)
+V.uGlobal.uMSO!State.Set(V.Global.sCustomer_State)
+V.uGlobal.uMSO!Zip.Set(V.Global.sCustomer_Zip)
+V.uGlobal.uMSO!Job.Set(V.Global.sJob)
+V.uGlobal.uMSO!BIRUNID.Set(V.Global.iBIRUNID)
+
+'Stop logging
+F.Global.BI.StopLogging(V.Global.iBIRUNID)
+'Open recordset to table
+F.ODBC.Connection!con.OpenLocalRecordsetRW("rstSave","SELECT * FROM GCG_4247_MSO_CERT")
+'Save UDT to recordset
+F.Intrinsic.Variable.SaveUDTToRecordset("con","rstSave","V.uGlobal.uMSO")
+'Print Report
+F.Global.BI.RunReportPreProcessor(V.Global.iBIRUNID,V.Global.iLogID,"BIRUNID",V.Global.iBIRUNID,"",-1,True,"",-1,"",-1,"","",V.Local.iRet)
+
+F.ODBC.con!rstSave.Close
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Print_MSO_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_4247_MSO_TIRE_PLACARD_LABELS.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.CallSub(F_labels_unload)
+Function.Intrinsic.Control.EndIf
+
+Program.Sub.Print_MSO.End
+
+Program.Sub.Get_MSO_Data.Start
+F.Intrinsic.Control.SetErrorHandler("Get_MSO_Data_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.sSQL.Declare(String)
+V.Local.sVINTemp.Declare(String)
+V.Local.iYear.Declare(Long)
+
+V.Global.sJob.Set(V.Screen.F_Labels!txtJob.Text)
+V.Global.sSuffix.Set(V.Screen.F_Labels!txtSuffix.Text)
+V.Global.fShipping_Weight.Set(V.Screen.F_Labels!txtShipWgt.Text)
+
+'We need to get the WIP to FG date from Inventory_Hist, Code Transaction J52
+F.Intrinsic.String.Build("SELECT DATE_ACTION FROM V_INVENTORY_HIST WHERE JOB = '{0}' AND SUFFIX = '{1}' AND SEQ = '999999' AND CODE_TRANSACTION = 'J52'",V.Global.sJob.Trim,V.Global.sSuffix.Trim,V.Local.sSQL)
+F.ODBC.Connection!con.OpenLocalRecordsetRO("rstWIP",V.Local.sSQL)
+
+F.Intrinsic.Control.If(V.ODBC.con!rstWIP.EOF,<>,True)
+	V.Global.sDate.Set(V.ODBC.con!rstWIP.FieldValTrim!DATE_ACTION)
+F.Intrinsic.Control.EndIf
+
+F.ODBC.con!rstWIP.Close
+
+'Need to get the VIN Number from the Serial field in Item_Master
+F.Intrinsic.String.Build("SELECT I.SERIAL_NUMBER FROM V_ITEM_MASTER I JOIN V_JOB_HEADER J ON (J.PART = I.PART AND J.BIN = I.BIN AND J.LOCATION = I.LOCATION) WHERE J.JOB = '{0}' AND J.SUFFIX = '{1}'",V.Global.sJob,V.Global.sSuffix,V.Local.sSQL)
+F.ODBC.Connection!con.OpenLocalRecordsetRO("rstVIN",V.Local.sSQL)
+
+F.Intrinsic.Control.If(V.ODBC.con!rstVIN.EOF,<>,True)
+	V.Global.sVIN.Set(V.ODBC.con!rstVIN.FieldValTrim!SERIAL_NUMBER)
+F.Intrinsic.Control.Else
+	'If no VIN information found then the  outside program that generates this for them hasn't run, and no labels should be printed.
+	F.ODBC.con!rstVIN.Close
+	F.Intrinsic.UI.Msgbox("No VIN information found. Exiting Program.")
+	F.Intrinsic.Control.CallSub(F_labels_unload)
+F.Intrinsic.Control.EndIf
+
+F.ODBC.con!rstVIN.Close
+
+'Now the only thing left to grab from the tables is the Customer information
+F.Intrinsic.String.Build("SELECT C.Name_Customer, C.ADDRESS1, C.ADDRESS2, C.CITY, C.STATE, C.ZIP, C.COUNTRY FROM V_CUSTOMER_MASTER C JOIN V_JOB_HEADER J ON J.CUSTOMER = C.CUSTOMER WHERE J.JOB = '{0}' AND J.SUFFIX = '{1}'",V.Global.sJob,V.Global.sSuffix,V.Local.sSQL)
+F.ODBC.Connection!con.OpenLocalRecordsetRO("rstCust",V.Local.sSQL)
+
+F.Intrinsic.Control.If(V.ODBC.con!rstCust.EOF,<>,True)
+	V.Global.sCustomer.Set(V.ODBC.con!rstCust.FieldValTrim!NAME_CUSTOMER)
+	V.Global.sCustomer_Addr.Set(V.ODBC.con!rstCust.FieldValTrim!ADDRESS1)
+	V.Global.sCustomer_Addr2.Set(V.ODBC.con!rstCust.FieldValTrim!ADDRESS2)
+	V.Global.sCustomer_City.Set(V.ODBC.con!rstCust.FieldValTrim!CITY)
+	V.Global.sCustomer_State.Set(V.ODBC.con!rstCust.FieldValTrim!STATE)
+	V.Global.sCustomer_Zip.Set(V.ODBC.con!rstCust.FieldValTrim!ZIP)
+	V.Global.sCustomer_Country.Set(V.ODBC.con!rstCust.FieldValTrim!COUNTRY)
+F.Intrinsic.Control.EndIf
+
+F.ODBC.con!rstCust.Close
+
+'Grab information from the VIN that we need
+F.Intrinsic.String.LimitSplit(V.Global.sVIN.Trim,1,V.Local.sVINTemp)
+'Series/Model Number
+F.Intrinsic.String.Build("{0}{1}    {2}{3}    {4}",V.Local.sVINTemp(3),V.Local.sVINTemp(4),V.Local.sVINTemp(5),V.Local.sVINTemp(6),V.Local.sVINTemp(7),V.Global.sSeries_Model)
+'Set the number of axels
+V.Global.iAxles.Set(V.Local.sVINTemp(7))
+'Invoice No
+F.Intrinsic.String.Right(V.Global.sVIN.Trim,6,V.Global.sInvoice_No)
+F.Intrinsic.String.Build("{0}-{1}",V.Global.sInvoice_No,V.Local.sVINTemp(9),V.Global.sInvoice_No)
+'Year comes from Alt Description 1 for the Part, and GVWR comes from Alt_Description_2 for the part
+F.Intrinsic.String.Build("SELECT PART, LOCATION FROM V_JOB_HEADER WHERE JOB = '{0}' AND SUFFIX = '{1}'",V.Global.sJob,V.Global.sSuffix,V.Local.sSQL)
+F.ODBC.Connection!con.OpenLocalRecordsetRO("rstPart",V.Local.sSQL)
+
+F.Intrinsic.Control.If(V.ODBC.con!rstPart.EOF,<>,True)
+	'Get the Alt Description 1 and 2. 
+	F.Intrinsic.String.Build("SELECT DESCRIPTION_2, DESCRIPTION_3 FROM INVENTORY_MST2 WHERE PART = '{0}' AND LOCATION = '{1}'",V.ODBC.con!rstPart.FieldValTrim!Part,V.ODBC.con!rstPart.FieldValTrim!Location,V.Local.sSQL)
+	F.ODBC.Connection!con.OpenLocalRecordsetRO("rstYear",V.Local.sSQL)
+
+	'Check to make sure we've got a value, we should though
+	F.Intrinsic.Control.If(V.ODBC.con!rstYear.EOF,<>,True)
+		V.Global.sYear.Set(V.ODBC.con!rstYear.FieldValTrim!DESCRIPTION_2)
+		V.Global.sGVWRLBS.Set(V.ODBC.con!rstYear.FieldValTrim!DESCRIPTION_3)
+	F.Intrinsic.Control.EndIf
+
+	F.ODBC.con!rstYear.Close
+F.Intrinsic.Control.EndIf
+
+F.ODBC.con!rstPart.Close
+
+'Calculate GVWR in kilograms
+F.Intrinsic.Math.Mult(V.Global.sGVWRLBS.Float,.45359237,V.Global.sGVWRKGS)
+F.Intrinsic.Math.Round(V.Global.sGVWRKGS.Float,0,V.Global.sGVWRKGS)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Get_MSO_Data_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_4247_MSO_TIRE_PLACARD_LABELS.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.CallSub(F_labels_unload)
+Function.Intrinsic.Control.EndIf
+
+Program.Sub.Get_MSO_Data.End
+
+Program.Sub.Print_Placard.Start
+F.Intrinsic.Control.SetErrorHandler("Print_Placard_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.iReportID.Declare(Long)
+V.Local.iRet.Declare(Long)
+V.Local.sDate.Declare(String)
+
+'Start logging
+F.Global.BI.GetRunID(V.Global.iBIRUNID)
+'Get Report ID
+F.Global.BI.GetIDFromName("GCG_4247_TIRE_PLACARD.lab",V.Local.iReportID)
+F.Global.BI.StartLogging(V.Global.iBIRUNID,V.Local.iReportID,0,"",V.Global.iLogID)
+
+'We need to collect the Tire Placard data
+F.Intrinsic.Control.CallSub(Get_Tire_Data)
+'Load data into UDT
+V.uGlobal.uPLACARD.Redim(-1,-1)
+V.uGlobal.uPLACARD.Redim(0,0)
+V.uGlobal.uPLACARD!Tire_Size.Set(V.Global.sTire_Size)
+V.uGlobal.uPLACARD!Cold_PressureKPA.Set(V.Global.sPressureKPA)
+V.uGlobal.uPLACARD!Cold_PressurePSI.Set(V.Global.sPressurePSI)
+V.uGlobal.uPLACARD!GVWRLBS.Set(V.Global.sGVWRLBS)
+V.uGlobal.uPLACARD!GVWRKGS.Set(V.Global.sGVWRKGS)
+V.uGlobal.uPLACARD!GAWRLBS.Set(V.Global.sGAWRLBS)
+V.uGlobal.uPLACARD!GAWRKGS.Set(V.Global.sGAWRKGS)
+V.uGlobal.uPLACARD!Invoice_No.Set(V.Global.sInvoice_No)
+V.uGlobal.uPLACARD!Job.Set(V.Global.sJob)
+V.uGlobal.uPLACARD!Year.Set(V.Global.sYear)
+V.uGlobal.uPLACARD!Rim.Set(V.Global.sRim)
+V.uGlobal.uPLACARD!Axle.Set(V.Global.iAxles)
+V.uGlobal.uPLACARD!VIN.Set(V.Global.sVIN)
+V.uGlobal.uPLACARD!Cargo_WeightKGS.Set(V.Global.fCargo_WeightKGS)
+V.uGlobal.uPLACARD!Cargo_WeightLBS.Set(V.Global.fCargo_WeightLBS)
+V.uGlobal.uPLACARD!Spare.Set(V.Global.bSpare)
+
+'Stop Logging
+F.Global.BI.StopLogging(V.Global.iBIRUNID)
+F.Global.BI.PrintCodesoftLabelFromUDT(V.Global.iBIRUNID,V.Global.iLogID,"uGlobal.uPLACARD","","",True)
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Print_Placard_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_4247_MSO_TIRE_PLACARD_LABELS.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.CallSub(f_labels_unload)
+Function.Intrinsic.Control.EndIf
+Program.Sub.Print_Placard.End
+
+Program.Sub.Get_Tire_Data.Start
+F.Intrinsic.Control.SetErrorHandler("Get_Tire_Data_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+V.Local.sSQL.Declare(String)
+V.Local.sDesc.Declare(String)
+
+'Get Cargo Weight
+F.Intrinsic.Math.Sub(V.Global.sGVWRLBS.Float,V.Global.fShipping_Weight,V.Global.fCargo_WeightLBS)
+'Round to the nearest whole number
+F.Intrinsic.Math.Round(V.Global.fCargo_WeightLBS,0,V.Global.fCargo_WeightLBS)
+'Get KGS value
+F.Intrinsic.Math.Mult(V.Global.fCargo_WeightLBS,.45359237,V.Global.fCargo_WeightKGS)
+
+'Get the Tire Size
+F.Intrinsic.String.Build("SELECT PART_DESCRIPTION FROM V_JOB_HEADER WHERE JOB = '{0}' AND SUFFIX = '{1}'",V.Global.sJob,V.Global.sSuffix,V.Local.sSQL)
+F.ODBC.Connection!con.OpenLocalRecordsetRO("rstSize",V.Local.sSQL)
+
+F.Intrinsic.Control.If(V.ODBC.con!rstSize.EOF,<>,True)
+	'We need to split the description field on a space. The tire size will always be in the first position
+	F.Intrinsic.String.Split(V.ODBC.con!rstSize.FieldVal!PART_DESCRIPTION," ",V.Local.sDesc)
+	V.Global.sTire_Size.Set(V.Local.sDesc(0))
+F.Intrinsic.Control.EndIf
+
+F.ODBC.con!rstSize.Close
+
+'Set Cold Tire Pressure
+V.Global.sPressurePSI.Set(V.Screen.F_Labels!txtPSI.Text)
+V.Global.sPressureKPA.Set(V.Screen.F_Labels!txtkPA.Text)
+
+'Set Spare Tire Value
+V.Global.bSpare.Set(V.Screen.F_Labels!chkSpare.Value)
+
+'VIN Tag information
+'Calculate LBS GAWR
+F.Intrinsic.Math.Div(V.Global.sGVWRLBS.Float,V.Global.iAxles,V.Global.sGAWRLBS)
+'Calculate KGS GAWR
+F.Intrinsic.Math.Div(V.Global.sGAWRLBS.Float,2.2,V.Global.sGAWRKGS)
+'Round each value
+F.Intrinsic.Math.Round(V.Global.sGAWRLBS.Float,0,V.Global.sGAWRLBS)
+F.Intrinsic.Math.Round(V.Global.sGAWRKGS.Float,0,V.Global.sGAWRKGS)
+
+'Rim
+F.Intrinsic.String.Build("SELECT RIM_SIZE FROM GCG_4247_RIM_MAINT WHERE TIRE_SIZE = '{0}'",V.Global.sTire_Size,V.Local.sSQL)
+F.ODBC.Connection!con.OpenLocalRecordsetRO("rstRim",V.Local.sSQL)
+
+F.Intrinsic.Control.If(V.ODBC.con!rstRim.EOF,<>,True)
+	V.Global.sRim.Set(V.ODBC.con!rstRim.FieldValTrim!RIM_SIZE)
+F.Intrinsic.Control.EndIf
+
+F.ODBC.con!rstRim.Close
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("Get_Tire_Data_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_4247_MSO_TIRE_PLACARD_LABELS.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.CallSub(f_labels_unload)
+Function.Intrinsic.Control.EndIf
+Program.Sub.Get_Tire_Data.End
+
+Program.Sub.F_Labels_UnLoad.Start
+F.Intrinsic.Control.SetErrorHandler("cmdPrint_Click_Err")
+F.Intrinsic.Control.ClearErrors
+
+V.Local.sError.Declare(String)
+
+F.ODBC.Connection!con.Close
+F.Intrinsic.Control.End
+
+F.Intrinsic.Control.ExitSub
+
+F.Intrinsic.Control.Label("cmdPrint_Click_Err")
+F.Intrinsic.Control.If(V.Ambient.ErrorNumber,<>,0)
+	Function.Intrinsic.String.Concat("Project: GCG_4247_MSO_TIRE_PLACARD_LABELS.gas",V.Ambient.Newline,V.Ambient.Newline,"Subroutine: ",V.Ambient.CurrentSubroutine,V.Ambient.NewLine,"Error Occurred ",V.Ambient.ErrorNumber," with description ",V.Ambient.ErrorDescription,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.End
+
+Function.Intrinsic.Control.EndIf
+Program.Sub.F_Labels_UnLoad.End
+
+Program.Sub.Comments.Start
+${$0$}$MSO And Tire Placard Label Creator$}$BCC$}$10/17/2016 6:04:32 PM$}$False
+${$3$}$0$}$$}$0$}$-1$}$$}$12:00:00 AM$}$MSO Certificate of Origin
+
+Here the following information will be gathered and Printed on the Certificate:
+
+Date - WIP to FG Date
+Vehicle Identification No - Serial Number field
+Body Type - Trailer
+GVWR - User entered
+Year - Model Year obtained from the Vin Number
+Invoice No - Weld Number from Vin Number last 6 char and letter year of manufacture from Vin which is the 8 char
+Make - H&H Trailer
+Shipping Weight - User Entered
+Series/Model - This is from the VIN - first two letters are trailer type
+from VIN 4th and 5th character, next two are the length of the trailer from the VIN 6th and 7th character, last number is the number of axles from VIN 8th character (Vin is currently created by a separate program and saved to the Serial number field. This is where the Vin number will come from.) For the Second Number this will be the Work Order Number and will be below the Series number.
+
+The customer information will be the information from the Work Order.
+Customer
+Customer Address
+Customer City
+Customer State
+Customer Zip
+Customer Country
+
+The user will need to enter the Shipping weight so this can be printed on the certificate.
+The GVWR will be pulled from a field in Global Shop. This field will need to be supplied at time of development.
+
+
+Tire Placard
+The Tire Size will come from the Description field of the Part first 11 characters only.
+The KPA/PSI - entered by the user.
+Program.Sub.Comments.End
+
